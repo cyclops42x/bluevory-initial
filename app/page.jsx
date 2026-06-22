@@ -1,20 +1,22 @@
+'use client'; // Forzamos el contexto de cliente para habilitar window.open de forma segura
+
 import React from 'react';
 
-export const metadata = {
-  title: 'Bluevory | Soluciones Digitales Premium',
-  description: 'Desarrollo de páginas web, sistemas a medida y automatizaciones de procesos para escalar tu negocio.',
-};
-
 export default function LandingPage() {
-  // Construcción limpia y segura del mensaje personalizado de WhatsApp
-  const whatsappMessage = `Hola Bluevory! 👋 Vengo de su página web. Me interesa potenciar mi negocio y me gustaría recibir una asesoría para:
+  const whatsappNumber = "51923117677";
 
-📌 Tipo de negocio: 
-💻 Lo que necesito (Web / Sistema / Automatización): 
+  // Lógica de envío idéntica a tu proyecto de streaming (100% compatible con emojis y saltos de línea)
+  const handleWhatsAppRedirect = () => {
+    const whatsappMsg = `Hola Bluevory! 👋 Encontré su página web. Me interesa potenciar mi negocio y me gustaría recibir una asesoría para:
+
+📌 Tipo de negocio:
+💻 Lo que necesito (Web / Sistema / Automatización):
 
 ¿Cuáles son los siguientes pasos para agendar una breve llamada?`;
 
-  const whatsappUrl = `https://wa.me/51923117677?text=${encodeURIComponent(whatsappMessage)}`;
+    const encoded = encodeURIComponent(whatsappMsg);
+    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encoded}`, '_blank');
+  };
 
   return (
     <div className="bg-[#0B0F19] text-slate-200 antialiased min-h-screen font-sans overflow-x-hidden scroll-smooth">
@@ -34,14 +36,12 @@ export default function LandingPage() {
           </nav>
 
           <div>
-            <a 
-              href={whatsappUrl}
-              target="_blank" 
-              rel="noopener noreferrer"
+            <button 
+              onClick={handleWhatsAppRedirect}
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-600/20"
             >
               Cotizar Proyecto
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -70,14 +70,12 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href={whatsappUrl}
-              target="_blank" 
-              rel="noopener noreferrer"
+            <button 
+              onClick={handleWhatsAppRedirect}
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-semibold bg-white text-slate-900 hover:bg-slate-100 transition-all duration-300 transform hover:-translate-y-1 shadow-xl"
             >
               Iniciar Conversación por WhatsApp
-            </a>
+            </button>
             <a 
               href="#servicios" 
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 hover:text-white transition-all duration-300"
@@ -173,7 +171,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
               <div className="text-xl font-bold text-indigo-500 bg-indigo-500/10 w-10 h-10 rounded-lg flex items-center justify-center shrink-0">2</div>
               <div>
                 <h3 className="text-xl font-semibold text-white mb-2">Arquitectura & Desarrollo Ágil</h3>
@@ -192,7 +190,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* SECCIÓN DE CONVERSIÓN EN ALTA (CTA) */}
+      {/* CTA SECTION */}
       <section className="py-24 relative overflow-hidden bg-[#090D16] border-t border-slate-900">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-0 right-0 w-[600px] h-[300px] rounded-full bg-blue-600/10 blur-[120px] mx-auto"></div>
@@ -200,24 +198,22 @@ export default function LandingPage() {
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            ¿Listo para llevar tu operación <br class="hidden sm:inline" />al siguiente nivel?
+            ¿Listo para llevar tu operación <br className="hidden sm:inline" />al siguiente nivel?
           </h2>
           <p className="text-slate-400 text-base md:text-lg max-w-xl mx-auto mb-10">
             Hablemos por WhatsApp. Cuéntame qué necesita tu negocio y diseñemos una solución robusta, moderna y escalable.
           </p>
 
-          {/* BOTÓN DE WHATSAPP CON MENSAJE SEGURO Y PERSONALIZADO */}
-          <a 
-            href={whatsappUrl}
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-bold bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all duration-300 transform hover:-translate-y-1 shadow-xl shadow-emerald-950/20 group"
+          {/* BOTÓN DE WHATSAPP EJECUTADO POR EVENTO */}
+          <button 
+            onClick={handleWhatsAppRedirect}
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-bold bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all duration-300 transform hover:-translate-y-1 shadow-xl shadow-emerald-950/20 group mx-auto"
           >
             <svg className="w-6 h-6 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.245 3.485 8.426-.005 6.617-5.343 11.964-11.913 11.964-2.006-.001-3.974-.506-5.729-1.46L0 24zm6.57-4.059l.375.223c1.51.896 3.247 1.369 5.023 1.37h.005c5.485 0 9.948-4.464 9.952-9.952.002-2.66-1.033-5.159-2.908-7.037C17.143 2.668 14.643 1.63 11.972 1.63c-5.491 0-9.954 4.465-9.959 9.954-.002 1.834.48 3.623 1.396 5.2l.245.422L2.651 21.3l4.015-1.053z"/>
             </svg>
             Escríbenos por WhatsApp
-          </a>
+          </button>
           
           <span className="block text-xs text-slate-500 mt-4">Respuesta rápida • Disponible para todo el Perú y LATAM</span>
         </div>
